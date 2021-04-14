@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Autocomplete, GoogleMap, LoadScript, StandaloneSearchBox } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, StandaloneSearchBox } from "@react-google-maps/api";
 import mapConfig from "../../mapConfig/mapConfig.json";
 import "./Map.css";
 
@@ -7,15 +7,15 @@ export function Map() {
   const [originSearchBox, setOriginSearchBox] = useState({});
   const [destinationSearchBox, setDestinationSearchBox] = useState({});
 
-  const onLoadOrigin = (ref) => {
+  function onLoadOrigin(ref) {
     setOriginSearchBox(ref);
     return originSearchBox;
-  };
+  }
 
-  const onLoadDestination = (ref) => {
+  function onLoadDestination(ref) {
     setDestinationSearchBox(ref);
     return destinationSearchBox;
-  };
+  }
 
   function onPlacesChangedOrigin() {
     console.log(originSearchBox.getPlaces());
