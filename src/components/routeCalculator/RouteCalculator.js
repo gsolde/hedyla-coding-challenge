@@ -1,14 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import "./RouteCalculator.css";
 
 export function RouteCalculator() {
+  const [routeDistance, setRouteDistance] = useState(0);
+  const [routeCost, setRouteCost] = useState(0);
+  const [vehicleType, setVehicleType] = useState("truck");
+
+  function calculateRouteCost(distance) {
+    setRouteCost(vehicleType === "truck" ? distance * 25 : distance * 10);
+  }
+
   return (
-    <div>
-      <div className="row">
-        <input className="textbox" aria-label="Set increment amount" />
-        <button className="button">Calculate!</button>
+    <>
+      <div>
+        <div className="row">
+          <input className="textbox" onChange={(e) => setRouteDistance(e.target.value)} />
+        </div>
+        <div className="row">
+          <button
+            className="button"
+            onClick={() => {
+              setVehicleType("truck");
+            }}
+          >
+            Truck
+          </button>
+          <button
+            className="button"
+            onClick={() => {
+              setVehicleType("van");
+            }}
+          >
+            Van
+          </button>
+        </div>
+        <button
+          className="button"
+          onClick={() => {
+            calculateRouteCost(routeDistance);
+          }}
+        >
+          Calculate!
+        </button>
       </div>
-      <h1></h1>
-    </div>
+      <h1>{routeCost}</h1>
+    </>
   );
 }
