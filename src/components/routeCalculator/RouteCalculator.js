@@ -14,7 +14,7 @@ export function RouteCalculator() {
     <>
       <div className="routeCalculatorContainer">
         <div className="row">
-          <input className="textInput" onChange={(e) => setRouteDistance(e.target.value)} />
+          <input className="distanceInput" onChange={(e) => setRouteDistance(e.target.value)} />
         </div>
         <div className="row">
           <button
