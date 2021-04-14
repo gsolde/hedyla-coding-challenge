@@ -12,9 +12,9 @@ export function RouteCalculator() {
 
   return (
     <>
-      <div>
+      <div className="routeCalculatorContainer">
         <div className="row">
-          <input className="textbox" onChange={(e) => setRouteDistance(e.target.value)} />
+          <input className="textInput" onChange={(e) => setRouteDistance(e.target.value)} />
         </div>
         <div className="row">
           <button
@@ -43,7 +43,7 @@ export function RouteCalculator() {
           Calculate!
         </button>
       </div>
-      <h1>{routeCost}</h1>
+      <h1>{`${routeCost} €`}</h1>
     </>
   );
 }
