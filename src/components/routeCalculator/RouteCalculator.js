@@ -42,8 +42,8 @@ export function RouteCalculator() {
         >
           Calculate!
         </button>
+        <h1>{`${routeCost} €`}</h1>
       </div>
-      <h1>{`${routeCost} €`}</h1>
     </>
   );
 }
