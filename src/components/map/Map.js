@@ -48,7 +48,7 @@ export function Map() {
           mapContainerStyle={mapConfig[0].containerStyle}
           center={mapConfig[0].center}
           zoom={mapConfig[0].zoom}
-          options={{ fullscreenControl: false }}
+          options={mapConfig[0].options}
         >
           <div className="searchBoxesContainer">
             <StandaloneSearchBox onLoad={onLoadOrigin} onPlacesChanged={onPlacesChangedOrigin}>
