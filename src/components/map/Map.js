@@ -1,15 +1,29 @@
 import React, { useState } from "react";
-import { GoogleMap, LoadScript, StandaloneSearchBox } from "@react-google-maps/api";
+import { Autocomplete, GoogleMap, LoadScript, StandaloneSearchBox } from "@react-google-maps/api";
 import mapConfig from "../../mapConfig/mapConfig.json";
 import "./Map.css";
 
 export function Map() {
-  const [searchBox, setSearchBox] = useState({});
+  const [originSearchBox, setOriginSearchBox] = useState({});
+  const [destinationSearchBox, setDestinationSearchBox] = useState({});
 
-  const onLoad = (ref) => {
-    setSearchBox(ref);
-    return searchBox;
+  const onLoadOrigin = (ref) => {
+    setOriginSearchBox(ref);
+    return originSearchBox;
   };
+
+  const onLoadDestination = (ref) => {
+    setDestinationSearchBox(ref);
+    return destinationSearchBox;
+  };
+
+  function onPlacesChangedOrigin() {
+    console.log(originSearchBox.getPlaces());
+  }
+
+  function onPlacesChangedDestination() {
+    console.log(destinationSearchBox.getPlaces());
+  }
 
   return (
     <div className="mapContainer">
@@ -21,10 +35,10 @@ export function Map() {
           options={{ fullscreenControl: false }}
         >
           <div className="searchBoxesContainer">
-            <StandaloneSearchBox onLoad={onLoad}>
+            <StandaloneSearchBox onLoad={onLoadOrigin} onPlacesChanged={onPlacesChangedOrigin}>
               <input className="searchBox" type="text" placeholder="Origin" />
             </StandaloneSearchBox>
-            <StandaloneSearchBox onLoad={onLoad}>
+            <StandaloneSearchBox onLoad={onLoadDestination} onPlacesChanged={onPlacesChangedDestination}>
               <input className="searchBox" type="text" placeholder="Destination" />
             </StandaloneSearchBox>
           </div>
