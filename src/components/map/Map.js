@@ -38,7 +38,7 @@ export function Map() {
   }
 
   function fetchRoute(org, dest) {
-    getRoutes(org, dest);
+    org && dest && getRoutes(org, dest);
   }
 
   return (
