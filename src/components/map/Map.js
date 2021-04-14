@@ -11,6 +11,7 @@ export function Map() {
           mapContainerStyle={mapConfig[0].containerStyle}
           center={mapConfig[0].center}
           zoom={mapConfig[0].zoom}
+          options={{ fullscreenControl: false }}
         ></GoogleMap>
       </LoadScript>
     </div>
