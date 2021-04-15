@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { StandaloneSearchBox } from "@react-google-maps/api";
+import { useSelector, useDispatch } from "react-redux";
+import { addOrigin, addDestination } from "../../actions/index";
 import getRoutes from "../../services/osrm";
+
 import "./SearchBoxes.css";
 
 export function SearchBoxes() {
   const [originSearchBox, setOriginSearchBox] = useState({});
   const [destinationSearchBox, setDestinationSearchBox] = useState({});
-  let origin, destination;
+
+  const routePoints = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   function onLoadOrigin(ref) {
     setOriginSearchBox(ref);
@@ -19,21 +24,27 @@ export function SearchBoxes() {
   }
 
   function onPlacesChangedOrigin() {
-    origin = {
-      name: originSearchBox.getPlaces()[0].formatted_address,
-      lat: originSearchBox.getPlaces()[0].geometry.location.lat(),
-      lng: originSearchBox.getPlaces()[0].geometry.location.lng(),
-    };
-    console.log(origin);
+    dispatch(
+      addOrigin({
+        locationType: "origin",
+        name: originSearchBox.getPlaces()[0].formatted_address,
+        lat: originSearchBox.getPlaces()[0].geometry.location.lat(),
+        lng: originSearchBox.getPlaces()[0].geometry.location.lng(),
+      })
+    );
+    console.log(routePoints);
   }
 
   function onPlacesChangedDestination() {
-    destination = {
-      name: destinationSearchBox.getPlaces()[0].formatted_address,
-      lat: destinationSearchBox.getPlaces()[0].geometry.location.lat(),
-      lng: destinationSearchBox.getPlaces()[0].geometry.location.lng(),
-    };
-    console.log(destination);
+    dispatch(
+      addDestination({
+        locationType: "destination",
+        name: destinationSearchBox.getPlaces()[0].formatted_address,
+        lat: destinationSearchBox.getPlaces()[0].geometry.location.lat(),
+        lng: destinationSearchBox.getPlaces()[0].geometry.location.lng(),
+      })
+    );
+    console.log(routePoints);
   }
 
   function fetchRoute(org, dest) {
@@ -48,7 +59,7 @@ export function SearchBoxes() {
       <StandaloneSearchBox onLoad={onLoadDestination} onPlacesChanged={onPlacesChangedDestination}>
         <input className="searchBox" type="text" placeholder="Destination" />
       </StandaloneSearchBox>
-      <button onClick={() => fetchRoute(origin, destination)}>Get it!</button>
+      <button onClick={() => fetchRoute(routePoints[0], routePoints[1])}>Get it!</button>
     </div>
   );
 }
