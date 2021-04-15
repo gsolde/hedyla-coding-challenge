@@ -2,6 +2,7 @@ import React from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import mapConfig from "../../config/mapConfig.json";
 import SearchBoxes from "../../components/searchBoxes/SearchBoxes";
+import Markers from "../../components/markers/markers";
 import "./Map.css";
 
 export function Map() {
@@ -15,6 +16,7 @@ export function Map() {
           options={mapConfig[0].options}
         >
           <SearchBoxes />
+          <Markers />
         </GoogleMap>
       </LoadScript>
     </div>

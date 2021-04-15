@@ -10,7 +10,7 @@ export function SearchBoxes() {
   const [originSearchBox, setOriginSearchBox] = useState({});
   const [destinationSearchBox, setDestinationSearchBox] = useState({});
 
-  const routePoints = useSelector((state) => state);
+  const routeDetails = useSelector((state) => state);
   const dispatch = useDispatch();
 
   function onLoadOrigin(ref) {
@@ -26,25 +26,21 @@ export function SearchBoxes() {
   function onPlacesChangedOrigin() {
     dispatch(
       addOrigin({
-        locationType: "origin",
         name: originSearchBox.getPlaces()[0].formatted_address,
         lat: originSearchBox.getPlaces()[0].geometry.location.lat(),
         lng: originSearchBox.getPlaces()[0].geometry.location.lng(),
       })
     );
-    console.log(routePoints);
   }
 
   function onPlacesChangedDestination() {
     dispatch(
       addDestination({
-        locationType: "destination",
         name: destinationSearchBox.getPlaces()[0].formatted_address,
         lat: destinationSearchBox.getPlaces()[0].geometry.location.lat(),
         lng: destinationSearchBox.getPlaces()[0].geometry.location.lng(),
       })
     );
-    console.log(routePoints);
   }
 
   function fetchRoute(org, dest) {
@@ -59,7 +55,7 @@ export function SearchBoxes() {
       <StandaloneSearchBox onLoad={onLoadDestination} onPlacesChanged={onPlacesChangedDestination}>
         <input className="searchBox" type="text" placeholder="Destination" />
       </StandaloneSearchBox>
-      <button onClick={() => fetchRoute(routePoints[0], routePoints[1])}>Get it!</button>
+      <button onClick={() => fetchRoute(routeDetails.origin, routeDetails.destination)}>Get it!</button>
     </div>
   );
 }
