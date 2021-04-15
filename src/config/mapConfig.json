@@ -1,0 +1,14 @@
+[
+  {
+    "containerStyle": { "width": "100vw", "height": "100vh" },
+    "center": { "lat": 41.390205, "lng": 2.154007 },
+    "zoom": 10,
+    "libraries": ["places"],
+    "options": {
+      "disableDefaultUI": true,
+      "streetViewControl": true,
+      "zoomControl": true,
+      "mapTypeControl": false
+    }
+  }
+]
