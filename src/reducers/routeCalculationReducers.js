@@ -5,7 +5,7 @@ const routeCalculationReducers = (state = {}, action) => {
     case "ADD_DESTINATION":
       return { ...state, ...{ destination: action.payload } };
     case "ADD_ROUTES":
-      return { ...state, ...{ destination: action.payload } };
+      return { ...state, ...{ routes: action.payload } };
     default:
       return state;
   }

@@ -5,9 +5,16 @@ export const addOrigin = (origin) => {
   };
 };
 
-export const addDestination = (dest) => {
+export const addDestination = (destination) => {
   return {
     type: "ADD_DESTINATION",
-    payload: dest,
+    payload: destination,
+  };
+};
+
+export const addRoutes = (routes) => {
+  return {
+    type: "ADD_ROUTES",
+    payload: routes,
   };
 };
