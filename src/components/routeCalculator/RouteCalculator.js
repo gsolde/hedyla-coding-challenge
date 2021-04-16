@@ -22,42 +22,56 @@ export function RouteCalculator() {
           <h2>Route calculator</h2>
         </div>
         <div className="row">
-          <button className="calculationTypeSelector" onClick={() => setCalculationType("distance")}>
+          <button
+            className={calculationType === "distance" ? "activeCalcTypeButton" : "calcTypeSelectorButton"}
+            onClick={() => setCalculationType("distance")}
+          >
             Distance
           </button>
-          <button className="calculationTypeSelector" onClick={() => setCalculationType("originDestination")}>
+          <button
+            className={calculationType === "originDest" ? "activeCalcTypeButton" : "calcTypeSelectorButton"}
+            onClick={() => setCalculationType("originDest")}
+          >
             Org & dest
           </button>
         </div>
         <div>
           <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY} libraries={mapsAPI[0].libraries}>
-            {calculationType === "originDestination" && <SearchBoxes />}
+            {calculationType === "originDest" && <SearchBoxes />}
           </LoadScript>
         </div>
         <div className="row">
-          <input className="distanceInput" onChange={(e) => setRouteDistance(e.target.value)} placeholder="km" />
+          {calculationType === "distance" && (
+            <input className="distanceInput" onChange={(e) => setRouteDistance(e.target.value)} placeholder="km" />
+          )}
         </div>
         <div className="row">
-          <input
-            type="radio"
-            name="vehicleType"
-            onChange={() => {
+          <button
+            className={vehicleType === "truck" ? "activeVehicleTypeButton" : "vehicleTypeSelectorButton"}
+            onClick={() => {
               setVehicleType("truck");
               setCostKm(0.5);
             }}
-          />
-          <label>Truck (0.5 €/km)</label>
-          <input
-            type="radio"
-            name="vehicleType"
-            onChange={() => {
+          >
+            Truck
+          </button>
+          <button
+            className={vehicleType === "van" ? "activeVehicleTypeButton" : "vehicleTypeSelectorButton"}
+            onClick={() => {
               setVehicleType("van");
               setCostKm(0.25);
             }}
-          />
-          <label>Van (0.25 €/km)</label>
-          <input type="radio" name="vehicleType" onChange={() => setVehicleType("other")} />
-          <label>Other</label>
+          >
+            Van
+          </button>
+          <button
+            className={vehicleType === "other" ? "activeVehicleTypeButton" : "vehicleTypeSelectorButton"}
+            onClick={() => {
+              setVehicleType("other");
+            }}
+          >
+            Other
+          </button>
         </div>
         <div className="row">
           {vehicleType === "other" && (
