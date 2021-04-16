@@ -6,7 +6,10 @@ import { Provider } from "react-redux";
 import routeCalculationReducers from "./reducers/routeCalculationReducers";
 import "./index.css";
 
-const store = createStore(routeCalculationReducers);
+const store = createStore(
+  routeCalculationReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   <React.StrictMode>

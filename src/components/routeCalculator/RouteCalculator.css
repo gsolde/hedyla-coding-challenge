@@ -1,22 +1,20 @@
 .routeCalculatorContainer {
   z-index: 1;
   position: fixed;
-  bottom: 50px;
-  left: 50px;
+  top: 15px;
+  left: 15px;
+  width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  opacity: 0.9;
 }
 
 .row {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.row > button {
-  margin-left: 4px;
-  margin-right: 8px;
-}
-.row:not(:last-child) {
-  margin-bottom: 16px;
+  margin: 20px;
 }
 
 .value {
@@ -28,25 +26,21 @@
 }
 
 .button {
-  appearance: none;
-  background: none;
-  font-size: 32px;
-  padding-left: 12px;
-  padding-right: 12px;
   outline: none;
+  font-size: 20px;
+  padding: 10px;
   border: 2px solid transparent;
-  color: rgb(112, 76, 182);
-  padding-bottom: 4px;
+  color: #6274d6;
   cursor: pointer;
-  background-color: rgba(112, 76, 182, 0.1);
-  border-radius: 2px;
-  transition: all 0.15s;
+  background-color: #3c4a851a;
+  border-radius: 5px;
 }
 
 .distanceInput {
-  font-size: 32px;
+  font-size: 20px;
   padding: 2px;
-  width: 64px;
+  width: 60px;
+  height: 30px;
   text-align: center;
   margin-right: 4px;
 }
@@ -54,8 +48,4 @@
 .button:hover,
 .button:focus {
   border: 2px solid rgba(112, 76, 182, 0.4);
-}
-
-.button:active {
-  background-color: rgba(112, 76, 182, 0.2);
 }
