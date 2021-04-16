@@ -17,9 +17,9 @@ export function RouteCalculator() {
   const dispatch = useDispatch();
 
   function calculateRouteCost(distance) {
-    getRoutes(routeDetails.origin, routeDetails.destination); // logging route
+    routeDetails.origin && routeDetails.destination && getRoutes(routeDetails.origin, routeDetails.destination); // logging route
     setRouteCost(distance * costKm);
-    console.log(routeDetails);
+    console.log(routeDetails); // logging store
   }
 
   return (
