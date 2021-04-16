@@ -8,7 +8,8 @@ export function RouteCalculator() {
   const [routeDistance, setRouteDistance] = useState(0);
   const [costKm, setCostKm] = useState(0);
   const [routeCost, setRouteCost] = useState(0);
-  const [vehicleType, setVehicleType] = useState("truck");
+  const [vehicleType, setVehicleType] = useState("");
+  const [calculationType, setCalculationType] = useState("distance");
 
   function calculateRouteCost(distance) {
     setRouteCost(distance * costKm);
@@ -21,12 +22,16 @@ export function RouteCalculator() {
           <h2>Route calculator</h2>
         </div>
         <div className="row">
-          <button className="calculationTypeSelector">Distance</button>
-          <button className="calculationTypeSelector">Org & dest</button>
+          <button className="calculationTypeSelector" onClick={() => setCalculationType("distance")}>
+            Distance
+          </button>
+          <button className="calculationTypeSelector" onClick={() => setCalculationType("originDestination")}>
+            Org & dest
+          </button>
         </div>
         <div>
           <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY} libraries={mapsAPI[0].libraries}>
-            <SearchBoxes />
+            {calculationType === "originDestination" && <SearchBoxes />}
           </LoadScript>
         </div>
         <div className="row">
