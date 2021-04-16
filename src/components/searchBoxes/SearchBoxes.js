@@ -21,32 +21,31 @@ export function SearchBoxes() {
     return destinationSearchBox;
   }
 
-  function onPlacesChangedOrigin() {
-    dispatch(
-      addOrigin({
-        name: originSearchBox.getPlaces()[0].formatted_address,
-        lat: originSearchBox.getPlaces()[0].geometry.location.lat(),
-        lng: originSearchBox.getPlaces()[0].geometry.location.lng(),
-      })
-    );
-  }
-
-  function onPlacesChangedDestination() {
-    dispatch(
-      addDestination({
-        name: destinationSearchBox.getPlaces()[0].formatted_address,
-        lat: destinationSearchBox.getPlaces()[0].geometry.location.lat(),
-        lng: destinationSearchBox.getPlaces()[0].geometry.location.lng(),
-      })
-    );
+  function onPlacesChanged(searchBox) {
+    searchBox === originSearchBox &&
+      dispatch(
+        addOrigin({
+          name: originSearchBox.getPlaces()[0].formatted_address,
+          lat: originSearchBox.getPlaces()[0].geometry.location.lat(),
+          lng: originSearchBox.getPlaces()[0].geometry.location.lng(),
+        })
+      );
+    searchBox === destinationSearchBox &&
+      dispatch(
+        addDestination({
+          name: destinationSearchBox.getPlaces()[0].formatted_address,
+          lat: destinationSearchBox.getPlaces()[0].geometry.location.lat(),
+          lng: destinationSearchBox.getPlaces()[0].geometry.location.lng(),
+        })
+      );
   }
 
   return (
     <div className="searchBoxesContainer">
-      <StandaloneSearchBox onLoad={onLoadOrigin} onPlacesChanged={onPlacesChangedOrigin}>
+      <StandaloneSearchBox onLoad={onLoadOrigin} onPlacesChanged={() => onPlacesChanged(originSearchBox)}>
         <input className="searchBox" type="text" placeholder="Origin" />
       </StandaloneSearchBox>
-      <StandaloneSearchBox onLoad={onLoadDestination} onPlacesChanged={onPlacesChangedDestination}>
+      <StandaloneSearchBox onLoad={onLoadDestination} onPlacesChanged={() => onPlacesChanged(destinationSearchBox)}>
         <input className="searchBox" type="text" placeholder="Destination" />
       </StandaloneSearchBox>
     </div>
