@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { LoadScript } from "@react-google-maps/api";
+import { SearchBoxes } from "../searchBoxes/SearchBoxes";
+import mapsAPI from "../../config/mapsAPI.json";
 import "./RouteCalculator.css";
 
 export function RouteCalculator() {
@@ -12,13 +14,16 @@ export function RouteCalculator() {
     setRouteCost(distance * costKm);
   }
 
-  function setCalculationType() {}
-
   return (
     <>
       <div className="routeCalculatorContainer">
         <div className="row">
           <h2>Route calculator</h2>
+        </div>
+        <div className="row">
+          <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY} libraries={mapsAPI[0].libraries}>
+            <SearchBoxes />
+          </LoadScript>
         </div>
         <div className="row">
           <button className="button">km</button>
