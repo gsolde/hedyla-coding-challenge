@@ -55,12 +55,12 @@ export function SearchBoxes() {
       <StandaloneSearchBox onLoad={onLoadDestination} onPlacesChanged={onPlacesChangedDestination}>
         <input className="searchBox" type="text" placeholder="Destination" />
       </StandaloneSearchBox>
-      <button
+      {/* <button
         style={{ marginTop: "12px", height: "40px" }}
         onClick={() => fetchRoute(routeDetails.origin, routeDetails.destination)}
       >
         Get route!
-      </button>
+      </button> */}
     </div>
   );
 }

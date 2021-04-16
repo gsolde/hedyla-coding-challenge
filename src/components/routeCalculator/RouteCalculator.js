@@ -21,13 +21,13 @@ export function RouteCalculator() {
           <h2>Route calculator</h2>
         </div>
         <div className="row">
+          <button className="calculationTypeSelector">Distance</button>
+          <button className="calculationTypeSelector">Org & dest</button>
+        </div>
+        <div>
           <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY} libraries={mapsAPI[0].libraries}>
             <SearchBoxes />
           </LoadScript>
-        </div>
-        <div className="row">
-          <button className="button">km</button>
-          <button className="button">Origin & destination</button>
         </div>
         <div className="row">
           <input className="distanceInput" onChange={(e) => setRouteDistance(e.target.value)} placeholder="km" />
