@@ -32,7 +32,7 @@ export const routeCalculatorSlice = createSlice({
   },
 });
 
-export const selectRoutes = (state) => state.routes;
+export const selectRoutes = (state) => state.routes.routes;
 
 export const { addRoutes } = routeCalculatorSlice.actions;
 

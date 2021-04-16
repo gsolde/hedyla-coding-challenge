@@ -6,19 +6,17 @@ import polyline from "@mapbox/polyline";
 
 function Polylines() {
   const routes = useSelector(selectRoutes);
+  let routeGeometry;
+  let decodedPolyline;
 
-  console.log(routes);
-
-  let decodedPolyline = polyline
-    .decode(
-      "g}t|FuhgK}As]~h@yHvCbp@xq@cRxFzAu@`FfDcRbu@qo@zjB}h@fS}VhUssAnJmR~t@yWdn@bIjTmUvRof@rFyDz@dGiEcG[oa@jIuzAeYucBxBo_@aZe}@ix@svAc@wiApPmg@pu@mo@jc@io@rd@iCdXmOte@yIro@}|Alm@}u@bHgc@rZwLvR{i@b`@gZ~m@eOv|@uk@jBnC{fB}lB}ErJk[ws@xG}KiPsS",
-      5
-    )
-    .map((latLng) => {
+  function decodePolyline(routes) {
+    routeGeometry = routes.routes[0].geometry;
+    decodedPolyline = polyline.decode(routeGeometry, 5).map((latLng) => {
       return { lat: latLng[0], lng: latLng[1] };
     });
+  }
 
-  const path = decodedPolyline;
+  routes && decodePolyline(routes);
 
   const options = {
     strokeColor: "black",
@@ -28,7 +26,7 @@ function Polylines() {
 
   return (
     <div>
-      <Polyline path={path} options={options} />
+      <Polyline path={decodedPolyline} options={options} />
     </div>
   );
 }
