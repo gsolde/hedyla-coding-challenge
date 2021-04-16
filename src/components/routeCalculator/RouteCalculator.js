@@ -4,7 +4,6 @@ import { SearchBoxes } from "../searchBoxes/SearchBoxes";
 import { useSelector, useDispatch } from "react-redux";
 import { selectOrigin, selectDestination } from "../searchBoxes/searchBoxesSlice";
 import { addRoutes } from "./routeCalculatorSlice";
-import getRoutes from "../../services/osrm";
 import mapsAPI from "../../config/mapsAPI.json";
 import "./RouteCalculator.css";
 
@@ -29,6 +28,7 @@ export function RouteCalculator() {
           dispatch(addRoutes(data));
           setRouteDistance(data.routes[0].distance / 1000);
           setRouteCost(routeDistance * costKm);
+          console.log("now");
         });
     } else {
       setRouteCost(routeDistance * costKm);
@@ -126,8 +126,8 @@ export function RouteCalculator() {
         </div>
         {routeDistance > 0 && routeCost > 0 && (
           <div className="calculationDataContainer">
-            <p className="totalCost">{`Total distance: ${routeDistance.toFixed(2)} km`}</p>
-            <p className="totalCost">{`Total cost: ${routeCost.toFixed(2)} €`}</p>
+            <p className="totalCost">{`Total distance: ${routeDistance} km`}</p>
+            <p className="totalCost">{`Total cost: ${routeCost} €`}</p>
           </div>
         )}
       </div>
