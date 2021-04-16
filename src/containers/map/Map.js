@@ -1,7 +1,8 @@
 import React from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import mapsAPI from "../../config/mapsAPI.json";
-import Markers from "../../components/markers/markers";
+import Markers from "../../components/markers/Markers";
+import Polyline from "../../components/polylines/Polylines";
 import "./Map.css";
 
 export function Map() {
@@ -15,6 +16,7 @@ export function Map() {
           options={mapsAPI[0].options}
         >
           <Markers />
+          <Polyline />
         </GoogleMap>
       </LoadScript>
     </div>
