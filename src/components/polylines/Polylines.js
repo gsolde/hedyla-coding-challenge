@@ -6,6 +6,7 @@ import polyline from "@mapbox/polyline";
 
 function Polylines() {
   const routes = useSelector(selectRoutes);
+
   let routeGeometry;
   let decodedPolyline;
 
@@ -24,11 +25,7 @@ function Polylines() {
     strokeWeight: 5,
   };
 
-  return (
-    <div>
-      <Polyline path={decodedPolyline} options={options} />
-    </div>
-  );
+  return <div>{routes ? <Polyline path={decodedPolyline} options={options} /> : null}</div>;
 }
 
 export default Polylines;
