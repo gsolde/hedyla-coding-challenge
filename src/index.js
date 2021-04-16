@@ -1,15 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-import routeCalculationReducers from "./reducers/routeCalculationReducers";
 import "./index.css";
-
-const store = createStore(
-  routeCalculationReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+import App from "./App";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
   <React.StrictMode>

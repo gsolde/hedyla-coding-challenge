@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StandaloneSearchBox } from "@react-google-maps/api";
 import { useDispatch } from "react-redux";
-import { addOrigin, addDestination } from "../../actions/index";
+import { addOrigin, addDestination, selectOrigin } from "./searchBoxesSlice";
 
 import "./SearchBoxes.css";
 

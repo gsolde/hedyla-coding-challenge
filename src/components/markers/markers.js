@@ -1,14 +1,16 @@
 import React from "react";
 import { Marker } from "@react-google-maps/api";
 import { useSelector } from "react-redux";
+import { selectOrigin, selectDestination } from "../searchBoxes/searchBoxesSlice";
 
 function Markers() {
-  const routeDetails = useSelector((state) => state);
+  const origin = useSelector(selectOrigin);
+  const destination = useSelector(selectDestination);
 
   return (
     <div>
-      <Marker position={routeDetails.origin} animation={2} opacity={0.8} />
-      <Marker position={routeDetails.destination} animation={2} opacity={0.8} />
+      origin && <Marker position={origin} animation={2} opacity={0.8} />
+      destination && <Marker position={destination} animation={2} opacity={0.8} />
     </div>
   );
 }
