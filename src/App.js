@@ -1,6 +1,6 @@
 import React from "react";
 import { RouteCalculator } from "./components/routeCalculator/RouteCalculator";
-import { Map } from "./containers/map/Map";
+import { Map } from "./components/map/Map";
 
 function App() {
   return (
