@@ -2,20 +2,22 @@ import React, { useState } from "react";
 import { LoadScript } from "@react-google-maps/api";
 import { SearchBoxes } from "../searchBoxes/SearchBoxes";
 import { useSelector, useDispatch } from "react-redux";
-import { selectOrigin, selectDestination } from "../searchBoxes/searchBoxesSlice";
-import { addRoutes } from "./routeCalculatorSlice";
+import { selectOrigin, selectDestination, resetPlacesState } from "../searchBoxes/searchBoxesSlice";
+import { addRoutes, resetRoutesState } from "./routeCalculatorSlice";
 import mapsAPI from "../../config/mapsAPI.json";
 import "./RouteCalculator.css";
 
 export function RouteCalculator() {
+  const [calculationType, setCalculationType] = useState("distance");
   const [routeDistance, setRouteDistance] = useState(0);
+  const [vehicleType, setVehicleType] = useState("truck");
   const [costKm, setCostKm] = useState(0.5);
   const [routeCost, setRouteCost] = useState(0);
-  const [vehicleType, setVehicleType] = useState("truck");
-  const [calculationType, setCalculationType] = useState("distance");
+  const [calculationPerformed, setCalculationPerformed] = useState(false);
 
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
+
   const dispatch = useDispatch();
 
   function calculateRoute() {
@@ -25,14 +27,14 @@ export function RouteCalculator() {
       )
         .then((res) => res.json())
         .then((data) => {
+          let distanceKm = data.routes[0].distance / 1000;
           dispatch(addRoutes(data));
-          setRouteDistance(data.routes[0].distance / 1000);
-          setRouteCost(routeDistance * costKm);
-          console.log("now");
+          setRouteDistance(distanceKm.toFixed(2));
+          setRouteCost((distanceKm * costKm).toFixed(2));
         });
-    } else {
-      setRouteCost(routeDistance * costKm);
     }
+    setRouteCost((routeDistance * costKm).toFixed(2));
+    setCalculationPerformed(true);
   }
 
   return (
@@ -47,6 +49,9 @@ export function RouteCalculator() {
             onClick={() => {
               setCalculationType("distance");
               setRouteDistance(0);
+              setCalculationPerformed(false);
+              dispatch(resetPlacesState());
+              dispatch(resetRoutesState());
             }}
           >
             Distance
@@ -56,6 +61,7 @@ export function RouteCalculator() {
             onClick={() => {
               setCalculationType("originDest");
               setRouteDistance(0);
+              setCalculationPerformed(false);
             }}
           >
             Org & dest
@@ -124,7 +130,7 @@ export function RouteCalculator() {
             Calculate!
           </button>
         </div>
-        {routeDistance > 0 && routeCost > 0 && (
+        {calculationPerformed && (
           <div className="calculationDataContainer">
             <p className="totalCost">{`Total distance: ${routeDistance} km`}</p>
             <p className="totalCost">{`Total cost: ${routeCost} €`}</p>

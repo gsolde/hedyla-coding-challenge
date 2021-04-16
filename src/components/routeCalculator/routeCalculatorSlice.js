@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const initialState = { status: "idle" };
+const initialState = {};
 
 export const fetchRoutes = createAsyncThunk("routes/fetchRoutes", async (places) => {
   const response = await fetch(
@@ -16,6 +16,7 @@ export const routeCalculatorSlice = createSlice({
     addRoutes: (state, action) => {
       state.routes = action.payload;
     },
+    resetRoutesState: (state) => initialState,
   },
   extraReducers: (builder) => {
     builder
@@ -34,6 +35,6 @@ export const routeCalculatorSlice = createSlice({
 
 export const selectRoutes = (state) => state.routes.routes;
 
-export const { addRoutes } = routeCalculatorSlice.actions;
+export const { addRoutes, resetRoutesState } = routeCalculatorSlice.actions;
 
 export default routeCalculatorSlice.reducer;

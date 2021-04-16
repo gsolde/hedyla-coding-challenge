@@ -1,8 +1,8 @@
 import React from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import mapsAPI from "../../config/mapsAPI.json";
-import Markers from "../../components/markers/Markers";
-import Polyline from "../../components/polylines/Polylines";
+import Markers from "../markers/Markers";
+import Polyline from "../polylines/Polylines";
 import "./Map.css";
 
 export function Map() {

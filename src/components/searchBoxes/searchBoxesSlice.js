@@ -12,12 +12,13 @@ export const searchBoxesSlice = createSlice({
     addDestination: (state, action) => {
       state.destination = action.payload;
     },
+    resetPlacesState: (state) => initialState,
   },
 });
 
 export const selectOrigin = (state) => state.places.origin;
 export const selectDestination = (state) => state.places.destination;
 
-export const { addOrigin, addDestination } = searchBoxesSlice.actions;
+export const { addOrigin, addDestination, resetPlacesState } = searchBoxesSlice.actions;
 
 export default searchBoxesSlice.reducer;
