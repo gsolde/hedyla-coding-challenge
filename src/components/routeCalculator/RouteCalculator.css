@@ -12,8 +12,17 @@
 
 .row {
   display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+}
+
+.title {
+  display: flex;
   justify-content: center;
-  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .calcTypeSelectorButton {
@@ -22,10 +31,10 @@
   margin: 5px;
   padding: 5px;
   width: 100px;
-  border: 2px solid #5d6d7e;
+  border: 2px solid #2980b9;
   cursor: pointer;
   border-radius: 5px;
-  color: #5d6d7e;
+  color: #2980b9;
   background-color: white;
 }
 
@@ -39,7 +48,7 @@
   cursor: pointer;
   border-radius: 5px;
   color: white;
-  background-color: #5d6d7e;
+  background-color: #2980b9;
 }
 
 .activeVehicleTypeButton {
@@ -52,7 +61,7 @@
   cursor: pointer;
   border-radius: 5px;
   color: white;
-  background-color: #48c9b0;
+  background-color: #ec7063;
 }
 
 .vehicleTypeSelectorButton {
@@ -61,37 +70,75 @@
   margin: 5px;
   padding: 5px;
   width: 100px;
-  border: 2px solid #48c9b0;
+  border: 2px solid #ec7063;
   cursor: pointer;
   border-radius: 5px;
-  color: #48c9b0;
+  color: #ec7063;
   background-color: white;
 }
 
-.distanceInput {
+.dataInput {
+  outline: none;
   font-size: 14px;
   padding: 2px;
-  width: 100px;
-  height: 30px;
+  width: 50px;
+  height: 25px;
   text-align: center;
-  margin-right: 4px;
   border-radius: 5px;
+  margin-left: 5px;
   border: 1px solid #3c4a851a;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.button:hover,
-.button:focus {
-  border: 2px solid rgba(112, 76, 182, 0.4);
+.label {
+  margin-left: 10px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.calculateButton:hover,
+.calculateButton:focus {
+  outline: none;
+  font-size: 15px;
+  margin: 5px;
+  padding: 5px;
+  width: 100px;
+  border: 2px solid #52be80;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #52be80;
+  background-color: white;
+}
+
+.calculateButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .calculateButton {
   outline: none;
-  font-size: 20px;
-  padding: 10px;
+  font-size: 15px;
+  margin: 5px;
+  padding: 5px;
+  width: 100px;
   border: 2px solid transparent;
-  color: #6274d6;
   cursor: pointer;
-  background-color: #3c4a851a;
   border-radius: 5px;
+  color: white;
+  background-color: #52be80;
+}
+
+.calculationDataContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+}
+
+.totalCost {
+  color: rgba(0, 0, 0, 0.5);
+  align-self: center;
+  margin: 5px;
 }

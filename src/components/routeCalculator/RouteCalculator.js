@@ -6,9 +6,9 @@ import "./RouteCalculator.css";
 
 export function RouteCalculator() {
   const [routeDistance, setRouteDistance] = useState(0);
-  const [costKm, setCostKm] = useState(0);
+  const [costKm, setCostKm] = useState(0.5);
   const [routeCost, setRouteCost] = useState(0);
-  const [vehicleType, setVehicleType] = useState("");
+  const [vehicleType, setVehicleType] = useState("truck");
   const [calculationType, setCalculationType] = useState("distance");
 
   function calculateRouteCost(distance) {
@@ -18,8 +18,8 @@ export function RouteCalculator() {
   return (
     <>
       <div className="routeCalculatorContainer">
-        <div className="row">
-          <h2>Route calculator</h2>
+        <div className="title">
+          <h1>Route calculator</h1>
         </div>
         <div className="row">
           <button
@@ -42,7 +42,10 @@ export function RouteCalculator() {
         </div>
         <div className="row">
           {calculationType === "distance" && (
-            <input className="distanceInput" onChange={(e) => setRouteDistance(e.target.value)} placeholder="km" />
+            <div>
+              <input className="dataInput" onChange={(e) => setRouteDistance(e.target.value)} placeholder="km" />
+              <label className="label">distance in km</label>
+            </div>
           )}
         </div>
         <div className="row">
@@ -68,19 +71,26 @@ export function RouteCalculator() {
             className={vehicleType === "other" ? "activeVehicleTypeButton" : "vehicleTypeSelectorButton"}
             onClick={() => {
               setVehicleType("other");
+              setCostKm(0.0);
             }}
           >
             Other
           </button>
         </div>
         <div className="row">
-          {vehicleType === "other" && (
-            <input className="distanceInput" onChange={(e) => setCostKm(e.target.value)} placeholder="€/km" />
-          )}
+          <div>
+            <input
+              className="dataInput"
+              onChange={(e) => setCostKm(e.target.value)}
+              value={costKm}
+              placeholder="cost"
+            />
+            <label className="label">€/km</label>
+          </div>
         </div>
-        <div className="row">
+        <div className="calculateButtonContainer">
           <button
-            className="button"
+            className="calculateButton"
             onClick={() => {
               calculateRouteCost(routeDistance);
             }}
@@ -88,8 +98,9 @@ export function RouteCalculator() {
             Calculate!
           </button>
         </div>
-        <div className="row">
-          <h1>{`${routeCost} €`}</h1>
+        <div className="calculationDataContainer">
+          <p className="totalCost">{`Total distance: ${routeDistance} km`}</p>
+          <p className="totalCost">{`Total cost: ${routeCost} €`}</p>
         </div>
       </div>
     </>
