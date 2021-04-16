@@ -38,6 +38,20 @@
   background-color: white;
 }
 
+.calcTypeInfo {
+  font-size: 15px;
+  color: #2980b9;
+  margin-left: 55px;
+  margin-bottom: -12px;
+}
+
+.vehicleTypeInfo {
+  font-size: 15px;
+  color: #ec7063;
+  margin-left: 55px;
+  margin-bottom: -12px;
+}
+
 .activeCalcTypeButton {
   outline: none;
   font-size: 15px;

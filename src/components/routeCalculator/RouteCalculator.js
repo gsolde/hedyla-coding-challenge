@@ -41,7 +41,10 @@ export function RouteCalculator() {
     <>
       <div className="routeCalculatorContainer">
         <div className="title">
-          <h1>Route calculator</h1>
+          <h2>Route calculator</h2>
+        </div>
+        <div className="calcTypeInfo">
+          <p>Select calculation type</p>
         </div>
         <div className="row">
           <button
@@ -79,6 +82,9 @@ export function RouteCalculator() {
               <label className="label">distance in km</label>
             </div>
           )}
+        </div>
+        <div className="vehicleTypeInfo">
+          <p>Select vehicle type</p>
         </div>
         <div className="row">
           <button
