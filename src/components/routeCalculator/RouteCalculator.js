@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { LoadScript } from "@react-google-maps/api";
 import { SearchBoxes } from "../searchBoxes/SearchBoxes";
+import { useSelector, useDispatch } from "react-redux";
+import getRoutes from "../../services/osrm";
 import mapsAPI from "../../config/mapsAPI.json";
 import "./RouteCalculator.css";
 
@@ -11,8 +13,13 @@ export function RouteCalculator() {
   const [vehicleType, setVehicleType] = useState("truck");
   const [calculationType, setCalculationType] = useState("distance");
 
+  const routeDetails = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   function calculateRouteCost(distance) {
+    getRoutes(routeDetails.origin, routeDetails.destination); // logging route
     setRouteCost(distance * costKm);
+    console.log(routeDetails);
   }
 
   return (
@@ -24,13 +31,19 @@ export function RouteCalculator() {
         <div className="row">
           <button
             className={calculationType === "distance" ? "activeCalcTypeButton" : "calcTypeSelectorButton"}
-            onClick={() => setCalculationType("distance")}
+            onClick={() => {
+              setCalculationType("distance");
+              setRouteDistance(0);
+            }}
           >
             Distance
           </button>
           <button
             className={calculationType === "originDest" ? "activeCalcTypeButton" : "calcTypeSelectorButton"}
-            onClick={() => setCalculationType("originDest")}
+            onClick={() => {
+              setCalculationType("originDest");
+              setRouteDistance(0);
+            }}
           >
             Org & dest
           </button>
@@ -98,10 +111,12 @@ export function RouteCalculator() {
             Calculate!
           </button>
         </div>
-        <div className="calculationDataContainer">
-          <p className="totalCost">{`Total distance: ${routeDistance} km`}</p>
-          <p className="totalCost">{`Total cost: ${routeCost} €`}</p>
-        </div>
+        {routeDistance > 0 && routeCost > 0 && (
+          <div className="calculationDataContainer">
+            <p className="totalCost">{`Total distance: ${routeDistance} km`}</p>
+            <p className="totalCost">{`Total cost: ${routeCost} €`}</p>
+          </div>
+        )}
       </div>
     </>
   );

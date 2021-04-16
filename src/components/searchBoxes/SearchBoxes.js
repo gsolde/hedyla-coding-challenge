@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { StandaloneSearchBox } from "@react-google-maps/api";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addOrigin, addDestination } from "../../actions/index";
-import getRoutes from "../../services/osrm";
 
 import "./SearchBoxes.css";
 
@@ -10,7 +9,6 @@ export function SearchBoxes() {
   const [originSearchBox, setOriginSearchBox] = useState({});
   const [destinationSearchBox, setDestinationSearchBox] = useState({});
 
-  const routeDetails = useSelector((state) => state);
   const dispatch = useDispatch();
 
   function onLoadOrigin(ref) {
@@ -43,10 +41,6 @@ export function SearchBoxes() {
     );
   }
 
-  function fetchRoute(org, dest) {
-    org && dest && getRoutes(org, dest);
-  }
-
   return (
     <div className="searchBoxesContainer">
       <StandaloneSearchBox onLoad={onLoadOrigin} onPlacesChanged={onPlacesChangedOrigin}>
@@ -55,12 +49,6 @@ export function SearchBoxes() {
       <StandaloneSearchBox onLoad={onLoadDestination} onPlacesChanged={onPlacesChangedDestination}>
         <input className="searchBox" type="text" placeholder="Destination" />
       </StandaloneSearchBox>
-      {/* <button
-        style={{ marginTop: "12px", height: "40px" }}
-        onClick={() => fetchRoute(routeDetails.origin, routeDetails.destination)}
-      >
-        Get route!
-      </button> */}
     </div>
   );
 }
