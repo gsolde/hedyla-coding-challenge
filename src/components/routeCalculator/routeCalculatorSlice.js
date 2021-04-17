@@ -14,9 +14,6 @@ export const routeCalculatorSlice = createSlice({
   name: "routes",
   initialState,
   reducers: {
-    addRoutes: (state, action) => {
-      state.routes = action.payload;
-    },
     resetRoutesState: (state) => initialState,
   },
   extraReducers: (builder) => {
@@ -36,6 +33,6 @@ export const routeCalculatorSlice = createSlice({
 
 export const selectRoutes = (state) => state.routes.routes;
 
-export const { addRoutes, resetRoutesState } = routeCalculatorSlice.actions;
+export const { resetRoutesState } = routeCalculatorSlice.actions;
 
 export default routeCalculatorSlice.reducer;

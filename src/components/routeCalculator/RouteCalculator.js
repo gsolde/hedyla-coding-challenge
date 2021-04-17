@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LoadScript } from "@react-google-maps/api";
 import { SearchBoxes } from "../searchBoxes/SearchBoxes";
 import { useSelector, useDispatch } from "react-redux";
 import { selectOrigin, selectDestination, resetPlacesState } from "../searchBoxes/searchBoxesSlice";
-import { addRoutes, resetRoutesState } from "./routeCalculatorSlice";
+import { fetchRoutes, resetRoutesState, selectRoutes } from "./routeCalculatorSlice";
 import mapsAPI from "../../config/mapsAPI.json";
 import "./RouteCalculator.css";
 
@@ -17,6 +17,7 @@ export function RouteCalculator() {
 
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
+  const routes = useSelector(selectRoutes);
 
   const dispatch = useDispatch();
 
@@ -41,18 +42,12 @@ export function RouteCalculator() {
 
   function calculateRoute() {
     if (origin && destination) {
-      fetch(
-        `http://router.project-osrm.org/route/v1/driving/${origin.lng},${origin.lat};${destination.lng},${destination.lat}?alternatives=true&geometries=polyline&steps=true`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          let distanceKm = data.routes[0].distance / 1000;
-          dispatch(addRoutes(data));
-          setRouteDistance(distanceKm.toFixed(2));
-          setRouteCost((distanceKm * costKm).toFixed(2));
-        });
+      let distanceKm = (routes.routes[0].distance / 1000).toFixed(2);
+      setRouteDistance(distanceKm);
+      setRouteCost((distanceKm * costKm).toFixed(2));
+    } else {
+      setRouteCost((routeDistance * costKm).toFixed(2));
     }
-    setRouteCost((routeDistance * costKm).toFixed(2));
     setCalculationPerformed(true);
   }
 
@@ -61,6 +56,10 @@ export function RouteCalculator() {
     dispatch(resetRoutesState());
     setCalculationPerformed(false);
   }
+
+  useEffect(() => {
+    origin && destination && dispatch(fetchRoutes({ origin, destination }));
+  }, [origin, destination]);
 
   return (
     <>
@@ -145,7 +144,7 @@ export function RouteCalculator() {
               calculateRoute();
             }}
           >
-            Calculate
+            Calculate cost
           </button>
         </div>
         {calculationPerformed && (
