@@ -20,6 +20,18 @@ export function RouteCalculator() {
 
   const dispatch = useDispatch();
 
+  function selectCalculationType(calcType) {
+    setCalculationType(calcType);
+    setRouteDistance(0);
+    if (calcType === "distance") {
+      setCalculationPerformed(false);
+      dispatch(resetPlacesState());
+      dispatch(resetRoutesState());
+    } else if (calcType === "originDest") {
+      setCalculationPerformed(false);
+    }
+  }
+
   function calculateRoute() {
     if (origin && destination) {
       fetch(
@@ -49,23 +61,13 @@ export function RouteCalculator() {
         <div className="row">
           <button
             className={calculationType === "distance" ? "activeCalcTypeButton" : "calcTypeSelectorButton"}
-            onClick={() => {
-              setCalculationType("distance");
-              setRouteDistance(0);
-              setCalculationPerformed(false);
-              dispatch(resetPlacesState());
-              dispatch(resetRoutesState());
-            }}
+            onClick={() => selectCalculationType("distance")}
           >
             Distance
           </button>
           <button
             className={calculationType === "originDest" ? "activeCalcTypeButton" : "calcTypeSelectorButton"}
-            onClick={() => {
-              setCalculationType("originDest");
-              setRouteDistance(0);
-              setCalculationPerformed(false);
-            }}
+            onClick={() => selectCalculationType("originDest")}
           >
             Org & dest
           </button>
