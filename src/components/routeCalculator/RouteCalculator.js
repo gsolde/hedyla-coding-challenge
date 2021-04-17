@@ -38,6 +38,7 @@ export function RouteCalculator() {
     vehicleType === "truck" && setCostKm(0.5);
     vehicleType === "van" && setCostKm(0.25);
     vehicleType === "other" && setCostKm(0.0);
+    setCalculationPerformed(false);
   }
 
   function calculateRoute() {
@@ -59,6 +60,7 @@ export function RouteCalculator() {
 
   useEffect(() => {
     origin && destination && dispatch(fetchRoutes({ origin, destination }));
+    setCalculationPerformed(false);
   }, [origin, destination]);
 
   return (
