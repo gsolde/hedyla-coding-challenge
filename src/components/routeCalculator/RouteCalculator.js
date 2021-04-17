@@ -140,6 +140,20 @@ export function RouteCalculator() {
           <div className="calculationDataContainer">
             <p className="totalCost">{`Total distance: ${routeDistance} km`}</p>
             <p className="totalCost">{`Total cost: ${routeCost} €`}</p>
+            {origin && destination && (
+              <div className="calculateButtonContainer">
+                <button
+                  className="resetButton"
+                  onClick={() => {
+                    dispatch(resetPlacesState());
+                    dispatch(resetRoutesState());
+                    setCalculationPerformed(false);
+                  }}
+                >
+                  Reset origin & destination
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

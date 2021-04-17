@@ -110,20 +110,6 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-.calculateButton:hover,
-.calculateButton:focus {
-  outline: none;
-  font-size: 15px;
-  margin: 5px;
-  padding: 5px;
-  width: 100px;
-  border: 2px solid #52be80;
-  cursor: pointer;
-  border-radius: 5px;
-  color: #52be80;
-  background-color: white;
-}
-
 .calculateButtonContainer {
   display: flex;
   justify-content: center;
@@ -144,6 +130,13 @@
   background-color: #52be80;
 }
 
+.calculateButton:hover {
+  border: 2px solid #52be80;
+  cursor: pointer;
+  color: #52be80;
+  background-color: white;
+}
+
 .calculationDataContainer {
   display: flex;
   flex-direction: column;
@@ -155,4 +148,25 @@
   color: rgba(0, 0, 0, 0.5);
   align-self: center;
   margin: 5px;
+}
+
+.resetButton {
+  outline: none;
+  font-size: 15px;
+  margin: 5px;
+  padding: 5px;
+  width: 200px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  background-color: #99a3a4;
+}
+
+.resetButton:hover {
+  border: 2px solid #99a3a4;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #99a3a4;
+  background-color: white;
 }
