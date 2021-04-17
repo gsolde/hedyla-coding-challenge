@@ -32,6 +32,13 @@ export function RouteCalculator() {
     }
   }
 
+  function selectVehicleType(vehicleType) {
+    setVehicleType(vehicleType);
+    vehicleType === "truck" && setCostKm(0.5);
+    vehicleType === "van" && setCostKm(0.25);
+    vehicleType === "other" && setCostKm(0.0);
+  }
+
   function calculateRoute() {
     if (origin && destination) {
       fetch(
@@ -47,6 +54,12 @@ export function RouteCalculator() {
     }
     setRouteCost((routeDistance * costKm).toFixed(2));
     setCalculationPerformed(true);
+  }
+
+  function resetCalculation() {
+    dispatch(resetPlacesState());
+    dispatch(resetRoutesState());
+    setCalculationPerformed(false);
   }
 
   return (
@@ -92,8 +105,7 @@ export function RouteCalculator() {
           <button
             className={vehicleType === "truck" ? "activeVehicleTypeButton" : "vehicleTypeSelectorButton"}
             onClick={() => {
-              setVehicleType("truck");
-              setCostKm(0.5);
+              selectVehicleType("truck");
             }}
           >
             Truck
@@ -101,8 +113,7 @@ export function RouteCalculator() {
           <button
             className={vehicleType === "van" ? "activeVehicleTypeButton" : "vehicleTypeSelectorButton"}
             onClick={() => {
-              setVehicleType("van");
-              setCostKm(0.25);
+              selectVehicleType("van");
             }}
           >
             Van
@@ -110,8 +121,7 @@ export function RouteCalculator() {
           <button
             className={vehicleType === "other" ? "activeVehicleTypeButton" : "vehicleTypeSelectorButton"}
             onClick={() => {
-              setVehicleType("other");
-              setCostKm(0.0);
+              selectVehicleType("other");
             }}
           >
             Other
@@ -135,7 +145,7 @@ export function RouteCalculator() {
               calculateRoute();
             }}
           >
-            Calculate!
+            Calculate
           </button>
         </div>
         {calculationPerformed && (
@@ -147,9 +157,7 @@ export function RouteCalculator() {
                 <button
                   className="resetButton"
                   onClick={() => {
-                    dispatch(resetPlacesState());
-                    dispatch(resetRoutesState());
-                    setCalculationPerformed(false);
+                    resetCalculation();
                   }}
                 >
                   Reset
