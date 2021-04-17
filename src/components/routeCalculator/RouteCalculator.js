@@ -94,7 +94,12 @@ export function RouteCalculator() {
         <div className="row">
           {calculationType === "distance" && (
             <div>
-              <input className="dataInput" onChange={(e) => setRouteDistance(e.target.value)} placeholder="km" />
+              <input
+                className="dataInput"
+                type="number"
+                onChange={(e) => setRouteDistance(e.target.value)}
+                placeholder="km"
+              />
               <label className="label">distance in km</label>
             </div>
           )}
@@ -132,6 +137,7 @@ export function RouteCalculator() {
           <div>
             <input
               className="dataInput"
+              type="number"
               onChange={(e) => setCostKm(e.target.value)}
               value={costKm}
               placeholder="cost"
