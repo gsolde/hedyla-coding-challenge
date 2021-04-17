@@ -3,10 +3,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {};
 
 export const fetchRoutes = createAsyncThunk("routes/fetchRoutes", async (places) => {
-  const response = await fetch(
-    `http://router.project-osrm.org/route/v1/driving/2.2450325,41.4469883;2.1734035,41.3850639?alternatives=true&geometries=polyline&steps=true`
+  const res = await fetch(
+    `http://router.project-osrm.org/route/v1/driving/${places.origin.lng},${places.origin.lat};${places.destination.lng},${places.destination.lat}?alternatives=true&geometries=polyline&steps=true`
   );
-  return response.data;
+  const routes = await res.json();
+  return routes;
 });
 
 export const routeCalculatorSlice = createSlice({
