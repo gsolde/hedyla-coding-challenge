@@ -18,8 +18,6 @@ export function Map() {
     origin && destination && setMapCenter(destination);
   }
 
-  console.log("rendering map");
-
   useEffect(() => {
     mapCenterSetter();
   });
