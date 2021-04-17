@@ -150,7 +150,7 @@ export function RouteCalculator() {
                     setCalculationPerformed(false);
                   }}
                 >
-                  Reset origin & destination
+                  Reset
                 </button>
               </div>
             )}
