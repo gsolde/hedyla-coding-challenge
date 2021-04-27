@@ -1,5 +1,8 @@
 # React route calculator
 
+Simple route & cost calculator (origin - destination) powered by react-google-maps-api & project OSRM.<br/>
+Just a coding challenge to check code quality and structure. No responsiveness, no testing.
+
 ### To run the app:
  
 - **1. Fork or clone the repo.**
