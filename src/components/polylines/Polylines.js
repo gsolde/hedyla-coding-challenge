@@ -11,10 +11,12 @@ function Polylines() {
   let decodedPolyline;
 
   function decodePolyline(routes) {
-    routeGeometry = routes.routes[0].geometry;
-    decodedPolyline = polyline.decode(routeGeometry, 5).map((latLng) => {
-      return { lat: latLng[0], lng: latLng[1] };
-    });
+    if (routes.routes) {
+      routeGeometry = routes.routes[0].geometry;
+      decodedPolyline = polyline.decode(routeGeometry, 5).map((latLng) => {
+        return { lat: latLng[0], lng: latLng[1] };
+      });
+    }
   }
 
   routes && decodePolyline(routes);
