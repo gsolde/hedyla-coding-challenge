@@ -1,4 +1,4 @@
-# Hedyla Coding Challenge
+# React route calculator
 
 ### To run the app:
  
