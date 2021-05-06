@@ -1,7 +1,19 @@
-# React route calculator
+# React route calculator - Coding assignment
 
-Simple route & cost calculator (origin - destination) powered by react-google-maps-api & project OSRM.<br/>
-Just a coding challenge to check code quality and structure. No responsiveness, no testing.
+Simple route & route cost calculator providing origin and destination or manually introduced distance, powered by react-google-maps-api & project OSRM.<br/>
+This is a quick coding challenge with no responsiveness & no testing. 
+
+# Features
+
+1. Introduce the distance.
+2. Introduce the €/km.
+3. Calculate the total cost of the route.
+4. In addition to the ability to introduce the distance manually, adding another option to calculate it from the origin and destination coordinates would simplify      the process, so let’s add this feature (use OSRM API). Let the user introduce the origin and destination coordinates, and calculate the distance automatically.
+5. Add a couple of predefined fees (€/Km), e.g. Truck → 0.50€/Km, Van → 0.25€/Km
+6. Draw origin and destination in a map, and plot the route between them.
+7. Use Redux to request the information to the API.
+8. Replace the coordinates inputs by address inputs that geolocate the coordinates using an external service (Google Maps API, Mapbox API...).
+9. Enjoy, and don’t take it too seriously, we don’t expect you to be working on it for days.
 
 ### To run the app:
  
