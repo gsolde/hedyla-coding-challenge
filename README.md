@@ -1,6 +1,6 @@
 # React route calculator - Coding assignment
 
-Simple route & route cost calculator providing origin and destination or manually introduced distance, powered by react-google-maps-api & project OSRM.<br/>
+Simple route & route cost calculator providing origin and destination or manually introduced distance, powered by react-google-maps-api & project OSRM.
 This is a quick coding challenge with no responsiveness & no testing. 
 
 # Features
