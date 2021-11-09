@@ -13,7 +13,6 @@ This is a quick coding challenge with no responsiveness & no testing.
 6. Draw origin and destination in a map, and plot the route between them.
 7. Use Redux to request the information to the API.
 8. Replace the coordinates inputs by address inputs that geolocate the coordinates using an external service (Google Maps API, Mapbox API...).
-9. Enjoy, and don’t take it too seriously, we don’t expect you to be working on it for days.
 
 ### To run the app:
  
